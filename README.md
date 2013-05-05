@@ -23,6 +23,9 @@ if you have the program in your home directory (for example typing <code> sudo g
 <code> sudo chmod +x install.sh </code>
 
 <code> sudo ./install.sh </code>
+****************
+if you have already made rc.local, make sure that it has ' exit 0 ' at his end.
+****************
 
 To execute:
 
