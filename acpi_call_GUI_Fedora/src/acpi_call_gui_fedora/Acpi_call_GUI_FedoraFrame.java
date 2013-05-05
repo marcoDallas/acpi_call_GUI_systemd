@@ -219,7 +219,7 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
                 System.out.println("Created rc.local");
             }
         }
-        ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call_GUI/installation.sh");
+        ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call_GUI_Fedora/installation.sh");
         pb.redirectErrorStream(true);
         try {
             script=pb.start();
@@ -232,7 +232,7 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
      * turn off discrete GPU
      */
     private void disattiva(){
-        File f=new File("/usr/local/bin/acpi_call_GUI/codes/off");
+        File f=new File("/usr/local/bin/acpi_call_GUI_Fedora/codes/off");
         Scanner scan;
         try {
             scan = new Scanner(f);
@@ -243,7 +243,7 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
             Logger.getLogger(Acpi_call_GUI_FedoraFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         process=1;
-        ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call_GUI/deactivate.sh");
+        ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call_GUI_Fedora/deactivate.sh");
         pb.redirectErrorStream(true);
         try {
             script=pb.start();
@@ -269,7 +269,7 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
                 Logger.getLogger(Acpi_call_GUI_FedoraFrame.class.getName()).log(Level.SEVERE, null, ex1);
             }
         }
-        ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call_GUI/automates.sh");
+        ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call_GUI_Fedora/automates.sh");
         pb.redirectErrorStream(true);
         try {
             script=pb.start();
@@ -300,7 +300,7 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
                 JOptionPane.showMessageDialog(null,"You need to insert a code in order to procede!","Confirm",JOptionPane.WARNING_MESSAGE);
                 return false;
             }
-            try (PrintWriter printer = new PrintWriter("/usr/local/bin/acpi_call_GUI/codes/off")) {
+            try (PrintWriter printer = new PrintWriter("/usr/local/bin/acpi_call_GUI_Fedora/codes/off")) {
                 printer.print(codice);
             }
         }catch(FileNotFoundException e){
@@ -340,10 +340,10 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
         } catch (IOException ex) {
             Logger.getLogger(Acpi_call_GUI_FedoraFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(process==0){ url="/usr/local/bin/acpi_call_GUI/log/install_log"; }
+        if(process==0){ url="/usr/local/bin/acpi_call_GUI_Fedora/log/install_log"; }
         else{
-            if(process==1){ url="/usr/local/bin/acpi_call_GUI/log/deactivate_log"; }
-                else{ url="/usr/local/bin/acpi_call_GUI/log/automates_log"; }
+            if(process==1){ url="/usr/local/bin/acpi_call_GUI_Fedora/log/deactivate_log"; }
+                else{ url="/usr/local/bin/acpi_call_GUI_Fedora/log/automates_log"; }
         }
         PrintWriter printer;
         try {

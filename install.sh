@@ -46,8 +46,6 @@ chmod 777 $url/acpi_call_GUI_Fedora/log/deactivate_log
 chmod 777 $url/acpi_call_GUI_Fedora/log/automates_log
 chmod 777 $url/acpi_call_GUI_Fedora/codes/off
 chmod +x -R $url/acpi_call_GUI_Fedora
-echo "Creating link of the java program to the user's home directory"
-ln -f /usr/local/bin/acpi_call_GUI_Fedora/acpi_call_GUI_Fedora.jar $HOME
 echo "Installing prerequisites..."
 yum install git kernel-headers kernel-devel gcc  
 echo "Installation complete"

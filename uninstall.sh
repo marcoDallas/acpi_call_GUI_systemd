@@ -43,7 +43,7 @@ then
 break
 fi
 C=$(($C+1))
-done < /etc/rc.d/rc.local
+done < /etc/rc.local
 N=$C'd'
 sed -i -e "$N" /etc/rc.d/rc.local
 #turn off script

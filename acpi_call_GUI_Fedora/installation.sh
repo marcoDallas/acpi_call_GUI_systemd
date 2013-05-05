@@ -38,6 +38,7 @@ cd /usr/local/bin/acpi_call
 make >> $url/log/install_log
 insmod acpi_call.ko 
 modprobe acpi_call
+chmod 777 /proc/acpi/call 
 chmod +x $url/agg_acpi_call.sh 
 chmod +x /etc/rc.d/rc.local
 #Modifing the rc.local file:
