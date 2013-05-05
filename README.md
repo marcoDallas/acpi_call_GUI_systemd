@@ -16,7 +16,7 @@ Ubuntu user? See there: https://github.com/marcoDallas/acpi_call_GUI
 
 To install:
 after downloading the program, enter the directory acpi_call_GUI_Fedora and launch `install.sh` . 
-if you have the program in your home directory (for example typing <code> git clone https://github.com/marcoDallas/acpi_call_GUI.git </code>), you only need to type in terminal:
+if you have the program in your home directory (for example typing <code> sudo git clone https://github.com/marcoDallas/acpi_call_GUI_Fedora.git </code>), you only need to type in terminal:
 
 <code> cd acpi_call_GUI_Fedora </code>
 
@@ -28,9 +28,9 @@ To execute:
 
 type in a terminal: 
 
-<code> sudo java -jar $HOME/acpi_call_GUI_Fedora.jar </code>
+<code> sudo java -jar /usr/local/bin/acpi_call_GUI_Fedora/acpi_call_GUI_Fedora.jar </code>
 
-See there for a video guide: https://www.youtube.com/watch?v=h33bvoR14x8
+See there for a video guide (the commands are different but the usage of the program is the same): https://www.youtube.com/watch?v=h33bvoR14x8
 
 Note:
 
