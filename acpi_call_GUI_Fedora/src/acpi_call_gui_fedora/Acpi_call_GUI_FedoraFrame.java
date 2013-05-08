@@ -113,7 +113,7 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
         sel.setCursor(new Cursor(Cursor.HAND_CURSOR));
         deac=new JRadioButton("Turn off discrete GPU");
         deac.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        auto=new JRadioButton("Automate disabling the dedicated GPU every boot");
+        auto=new JRadioButton("Automate disabling discrete GPU every boot");
         auto.setCursor(new Cursor(Cursor.HAND_CURSOR));
         ButtonGroup gruppo=new ButtonGroup();
         gruppo.add(sel);
