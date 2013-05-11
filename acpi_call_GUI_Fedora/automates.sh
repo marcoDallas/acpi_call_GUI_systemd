@@ -42,6 +42,7 @@ do
     then
         break
     elif [ "$line" = "$url/deactivate.sh" ]
+    then
         break
     fi
     C=$(($C+1))
