@@ -49,10 +49,10 @@ acpi_call module should be used with caution. I reccomend you to take a look to 
 ![Alt text](https://lh4.googleusercontent.com/-lTn3-VeTZoM/UYmjnhbQ0XI/AAAAAAAAA9k/8fv9l5QeNIM/w614-h314-no/Schermata+del+2013-05-08+02%253A46%253A34.png "acpi_call_GUI")
 ***
 #### Here you can read eventual outputs or errors:
-![Alt text](https://lh6.googleusercontent.com/-IEOGoYCWMfE/UYmEGILhp7I/AAAAAAAAA84/9n5yLkFDJf8/w602-h327-no/vlcsnap-2013-05-08-00h13m59s87.png "here you can read eventual outputs or errors")
+![Alt text](https://lh5.googleusercontent.com/-i8Q-6UxOSuk/UY-sz6OPtMI/AAAAAAAAA_Q/uterDsLyy2Q/w636-h335-no/Schermata+del+2013-05-12.png "here you can read eventual outputs or errors")
 ***
 #### Copy here the 'Working ACPI handle OFF' code relative to your computer:
-![Alt text](https://lh5.googleusercontent.com/-QXJtUV3sZaY/UYmEHqHcRAI/AAAAAAAAA9A/RRTKLsEG8vw/w896-h504-no/vlcsnap-2013-05-08-00h13m40s178.png "copy here the 'Working ACPI handle OFF' code relative to your computer")
+![Alt text](https://lh6.googleusercontent.com/-FuXDqo1CP64/UY-s2FpM2YI/AAAAAAAAA_Y/SPhWcoDQ1Gk/w882-h504-no/Schermata+del+2013-05-08+02%253A49%253A19.png "copy here the 'Working ACPI handle OFF' code relative to your computer")
 ***
 ## Copyright:
 
