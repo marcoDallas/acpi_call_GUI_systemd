@@ -35,3 +35,4 @@
 url="/usr/local/bin/acpi_call_GUI_Fedora"
 B=$(sed -n '1p' $url/codes/off)
 echo "$B" > /proc/acpi/call 
+cat /proc/acpi/call
