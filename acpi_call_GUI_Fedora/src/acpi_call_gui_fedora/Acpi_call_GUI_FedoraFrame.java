@@ -327,13 +327,13 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
         textArea.setEditable(false);
         JScrollPane scroll=new JScrollPane(textArea);
         log.add(scroll);
-        String s="",tmp="",err="",url="";
+        String s="",tmp="",url="";
         InputStream is=script.getInputStream();
         InputStreamReader isr=new InputStreamReader(is);
         BufferedReader buffer=new BufferedReader(isr);
         try {
             while((tmp=buffer.readLine())!=null){
-                if(tmp.equals("0x0")) {
+                if(process==1 && tmp.equals("0x0")) {
                     s+="Discrete GPU correctly deactivated";
                 }
                 else {
