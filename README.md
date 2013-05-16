@@ -46,7 +46,7 @@ acpi_call module should be used with caution. I reccomend you to take a look to 
 ***
 ## Screenshots:
 #### acpi_call_GUI:
-![Alt text](https://lh4.googleusercontent.com/-lTn3-VeTZoM/UYmjnhbQ0XI/AAAAAAAAA9k/8fv9l5QeNIM/w614-h314-no/Schermata+del+2013-05-08+02%253A46%253A34.png "acpi_call_GUI")
+![Alt text](https://lh3.googleusercontent.com/G2y4wAd3FllQWEXfaMKBgKhYFB404NgYdrLotzUMET4=w614-h314-no "acpi_call_GUI")
 ***
 #### Here you can read eventual outputs or errors:
 ![Alt text](https://lh5.googleusercontent.com/-i8Q-6UxOSuk/UY-sz6OPtMI/AAAAAAAAA_Q/uterDsLyy2Q/w636-h335-no/Schermata+del+2013-05-12.png "here you can read eventual outputs or errors")
