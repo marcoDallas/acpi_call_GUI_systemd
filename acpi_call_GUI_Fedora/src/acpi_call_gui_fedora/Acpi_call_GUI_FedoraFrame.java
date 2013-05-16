@@ -75,6 +75,7 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
     private JPanel manager; //panel for buttons 'exit' and 'execute' 
     private JRadioButton sel; //button for the installation
     private JRadioButton deac; //button to turn off discrete GPU 
+    private JRadioButton change;//button to change the deactivation code
     private JRadioButton auto; //button for the automatization of the updates
     private JButton esegui; //button execute
     private JButton esci; //button exit
@@ -113,16 +114,20 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
         sel.setCursor(new Cursor(Cursor.HAND_CURSOR));
         deac=new JRadioButton("Turn off discrete GPU");
         deac.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        change=new JRadioButton("Change deactivation code");
+        change.setCursor(new Cursor(Cursor.HAND_CURSOR));
         auto=new JRadioButton("Automate disabling discrete GPU every boot");
         auto.setCursor(new Cursor(Cursor.HAND_CURSOR));
         ButtonGroup gruppo=new ButtonGroup();
         gruppo.add(sel);
         gruppo.add(deac);
+        gruppo.add(change);
         gruppo.add(auto);
         JPanel panel=new JPanel();
-        panel.setLayout(new GridLayout(4,1));
+        panel.setLayout(new GridLayout(5,1));
         panel.add(sel);
         panel.add(deac);
+        panel.add(change);
         panel.add(auto);
         panel.setBorder(new TitledBorder(new EtchedBorder(),"Operation:"));
         panel.setBackground(Color.LIGHT_GRAY);
@@ -198,6 +203,7 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
     private void chooseAction(){
         if(sel.isSelected()){ installazione(); }
         if(deac.isSelected()){ disattiva(); }
+        if(change.isSelected()){ insertCode(); }
         if(auto.isSelected()){ automatizza(); }
     }
     /**
