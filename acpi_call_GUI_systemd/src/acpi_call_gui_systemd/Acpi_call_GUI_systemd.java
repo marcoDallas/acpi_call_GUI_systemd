@@ -1,14 +1,14 @@
 /* 
- * Acpi_call_GUI.java
+ * Acpi_call_GUI_systemd.java
  * 
  * Copyright (C) 2013: Marco Dalla Libera 
  * 
- * acpi_call_GUI_Fedora is free software; you can redistribute it and/or modify
+ * acpi_call_GUI_systemd is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  * 
- * acpi_call_GUI_Fedora is distributed in the hope that it will be useful,
+ * acpi_call_GUI_systemd is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -32,7 +32,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
  * See the GNU General Public License for more details.
  */
-package acpi_call_gui_fedora;
+package acpi_call_gui_systemd;
 
 import javax.swing.JFrame;
 
@@ -40,13 +40,13 @@ import javax.swing.JFrame;
  * this program allow the user to manage the acpi_call module 
  * @author Marco Dalla Libera `marcoDallas`
  */
-public class Acpi_call_GUI_Fedora {
+public class Acpi_call_GUI_systemd {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JFrame frame=new Acpi_call_GUI_FedoraFrame();
+        JFrame frame=new Acpi_call_GUI_systemdFrame();
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setResizable(false);
         frame.setTitle("Acpi_call_GUI");

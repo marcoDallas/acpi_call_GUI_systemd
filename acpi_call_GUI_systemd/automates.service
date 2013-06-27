@@ -1,13 +1,12 @@
-#!/bin/sh
 
- # Copyright 2013 (C) Marco Dalla Libera 
+ # Copyright (C) 2013 Marco Dalla Libera 
  # 
- # acpi_call_GUI_Fedora is free software; you can redistribute it and/or modify
+ # acpi_call_GUI_systemd is free software; you can redistribute it and/or modify
  # it under the terms of the GNU General Public License as published by
  # the Free Software Foundation; either version 3 of the License, or
  # (at your option) any later version.
  # 
- # acpi_call_GUI_Fedora is distributed in the hope that it will be useful,
+ # acpi_call_GUI_systemd is distributed in the hope that it will be useful,
  # but WITHOUT ANY WARRANTY; without even the implied warranty of
  # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  # GNU General Public License for more details.
@@ -31,14 +30,13 @@
  # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
  # See the GNU General Public License for more details.
 
-url="/usr/local/bin/acpi_call_GUI_Fedora"
-s=$(uname -r)
-x=$(sed -n '1p' $url/kernel.txt)
-if [ $s != $x ]
-then
-cd /usr/local/bin/acpi_call
-make
-insmod acpi_call.ko
-modprobe acpi_call
-uname -r > $url/kernel.txt
-fi
+[Unit]
+Description=automates disabling discrete GPU
+After=agg_acpi_call.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "/usr/local/bin/acpi_call_GUI_systemd/deactivate.sh"
+
+[Install]
+WantedBy=multi-user.target 

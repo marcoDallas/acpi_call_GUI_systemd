@@ -1,14 +1,12 @@
 #!/bin/sh
-#Script launched by acpi_call_GUI_Fedora, java application that mangaes acpi_call modules
-
  # Copyright (C) 2013 Marco Dalla Libera 
  # 
- # acpi_call_GUI_Fedora is free software; you can redistribute it and/or modify
+ # acpi_call_GUI_systemd is free software; you can redistribute it and/or modify
  # it under the terms of the GNU General Public License as published by
  # the Free Software Foundation; either version 3 of the License, or
  # (at your option) any later version.
  # 
- # acpi_call_GUI_Fedora is distributed in the hope that it will be useful,
+ # acpi_call_GUI_systemd is distributed in the hope that it will be useful,
  # but WITHOUT ANY WARRANTY; without even the implied warranty of
  # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  # GNU General Public License for more details.
@@ -32,7 +30,14 @@
  # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
  # See the GNU General Public License for more details.
 
-url="/usr/local/bin/acpi_call_GUI_Fedora"
-B=$(sed -n '1p' $url/codes/off)
-echo "$B" > /proc/acpi/call 
-cat /proc/acpi/call
+url="/usr/local/bin/acpi_call_GUI_systemd"
+git clone http://github.com/mkottman/acpi_call.git /usr/local/bin/acpi_call 
+cd /usr/local/bin/acpi_call 
+make
+insmod acpi_call.ko 
+modprobe acpi_call
+chmod 777 /proc/acpi/call 
+chmod +x $url/agg_acpi_call.sh
+uname -r > $url/kernel.txt
+cp $url/agg_acpi_call.service /usr/lib/systemd/system/
+systemctl -q enable agg_acpi_call.service

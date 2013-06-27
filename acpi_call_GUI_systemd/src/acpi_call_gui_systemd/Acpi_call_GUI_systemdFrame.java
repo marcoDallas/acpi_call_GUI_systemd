@@ -1,14 +1,14 @@
 /* 
- * Acpi_call_GUIFrame.java
+ * Acpi_call_GUI_systemdFrame.java
  * 
  * Copyright (C) 2013: Marco Dalla Libera 
  * 
- * acpi_call_GUI_Fedora is free software; you can redistribute it and/or modify
+ * acpi_call_GUI_systemd is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  * 
- * acpi_call_GUI_Fedora is distributed in the hope that it will be useful,
+ * acpi_call_GUI_systemd is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -32,7 +32,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
  * See the GNU General Public License for more details.
  */
-package acpi_call_gui_fedora;
+package acpi_call_gui_systemd;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -67,7 +67,7 @@ import javax.swing.border.TitledBorder;
  * this frame contains the control panel that mangages the operations
  * @author Marco Dalla Libera `marcoDallas`
  */
-public class Acpi_call_GUI_FedoraFrame extends JFrame{
+public class Acpi_call_GUI_systemdFrame extends JFrame{
     private static final int FRAME_WIDTH=600;
     private static final int FRAME_HEIGHT=300;
     private JPanel intro; //label for the introducution
@@ -84,7 +84,7 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
     /**
      * constructs the Frame
      */
-    public Acpi_call_GUI_FedoraFrame(){
+    public Acpi_call_GUI_systemdFrame(){
         setSize(FRAME_WIDTH,FRAME_HEIGHT);
         intro=createIntro();
         add(intro,BorderLayout.NORTH);
@@ -212,25 +212,12 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
     private void installazione(){
         process=0;
         if(!(insertCode()))return;
-        File f=new File("/etc/rc.d/rc.local");
-        try {
-            Scanner scan=new Scanner(f);
-        } catch (FileNotFoundException ex) {
-            try {            
-                PrintWriter printer=new PrintWriter("/etc/rc.d/rc.local");
-                printer.println(" ");
-                printer.println("exit 0");
-                printer.close();
-            } catch (FileNotFoundException ex1) {
-                System.out.println("Created rc.local");
-            }
-        }
-        ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call_GUI_Fedora/installation.sh");
+        ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call_GUI_systemd/installation.sh");
         pb.redirectErrorStream(true);
         try {
             script=pb.start();
         } catch (IOException ex) {
-            Logger.getLogger(Acpi_call_GUI_FedoraFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Acpi_call_GUI_systemdFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         logs();
     }
@@ -238,7 +225,7 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
      * turn off discrete GPU
      */
     private void disattiva(){
-        File f=new File("/usr/local/bin/acpi_call_GUI_Fedora/codes/off");
+        File f=new File("/usr/local/bin/acpi_call_GUI_systemd/codes/off");
         Scanner scan;
         try {
             scan = new Scanner(f);
@@ -246,15 +233,15 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
                 if(!(insertCode()))return;
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Acpi_call_GUI_FedoraFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Acpi_call_GUI_systemdFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         process=1;
-        ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call_GUI_Fedora/deactivate.sh");
+        ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call_GUI_systemd/deactivate.sh");
         pb.redirectErrorStream(true);
         try {
             script=pb.start();
         } catch (IOException ex) {
-            Logger.getLogger(Acpi_call_GUI_FedoraFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Acpi_call_GUI_systemdFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         logs();
     }
@@ -263,24 +250,12 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
      */
     private void automatizza(){
         process=2;
-        File f=new File("/etc/rc.d/rc.local");
-        try {
-            Scanner scan=new Scanner(f);
-        } catch (FileNotFoundException ex) {
-            try {            
-                PrintWriter printer=new PrintWriter("/etc/rc.d/rc.local");
-                printer.print("exit 0");
-                printer.close();
-            } catch (FileNotFoundException ex1) {
-                Logger.getLogger(Acpi_call_GUI_FedoraFrame.class.getName()).log(Level.SEVERE, null, ex1);
-            }
-        }
-        ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call_GUI_Fedora/automates.sh");
+        ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call_GUI_systemd/automates.sh");
         pb.redirectErrorStream(true);
         try {
             script=pb.start();
         } catch (IOException ex) {
-            Logger.getLogger(Acpi_call_GUI_FedoraFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Acpi_call_GUI_systemdFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         logs();
     }
@@ -299,14 +274,14 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
             try {
                 pb.start();
             } catch (IOException ex) {
-                Logger.getLogger(Acpi_call_GUI_FedoraFrame.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Acpi_call_GUI_systemdFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
             String codice=JOptionPane.showInputDialog(null, "Code:","Code");
             if(codice==null){
                 JOptionPane.showMessageDialog(null,"You need to insert a code in order to procede!","Confirm",JOptionPane.WARNING_MESSAGE);
                 return false;
             }
-            try (PrintWriter printer = new PrintWriter("/usr/local/bin/acpi_call_GUI_Fedora/codes/off")) {
+            try (PrintWriter printer = new PrintWriter("/usr/local/bin/acpi_call_GUI_systemd/codes/off")) {
                 printer.print(codice);
             }
         }catch(FileNotFoundException e){
@@ -349,17 +324,17 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
                 textArea.setText(s);
             }
         } catch (IOException ex) {
-            Logger.getLogger(Acpi_call_GUI_FedoraFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Acpi_call_GUI_systemdFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(process==0){ 
-            url="/usr/local/bin/acpi_call_GUI_Fedora/log/install_log"; 
+            url="/usr/local/bin/acpi_call_GUI_systemd/log/install_log"; 
         }
         else{
             if(process==1){ 
-                url="/usr/local/bin/acpi_call_GUI_Fedora/log/deactivate_log"; 
+                url="/usr/local/bin/acpi_call_GUI_systemd/log/deactivate_log"; 
             }
             else{ 
-                url="/usr/local/bin/acpi_call_GUI_Fedora/log/automates_log"; 
+                url="/usr/local/bin/acpi_call_GUI_systemd/log/automates_log"; 
             }
         }
         PrintWriter printer;
@@ -368,7 +343,7 @@ public class Acpi_call_GUI_FedoraFrame extends JFrame{
             printer.print(s); 
             printer.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Acpi_call_GUI_FedoraFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Acpi_call_GUI_systemdFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         log.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         manager.setVisible(true);

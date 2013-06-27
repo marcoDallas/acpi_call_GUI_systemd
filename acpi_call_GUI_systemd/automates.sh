@@ -1,6 +1,5 @@
 #!/bin/sh
-#Script for the installation of acpi_call_GUI_systemd
-# Copyright (C) 2013 Marco Dalla Libera 
+ # Copyright (C) 2013 Marco Dalla Libera 
  # 
  # acpi_call_GUI_systemd is free software; you can redistribute it and/or modify
  # it under the terms of the GNU General Public License as published by
@@ -31,19 +30,5 @@
  # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
  # See the GNU General Public License for more details.
 
-url="/usr/local/bin"
-echo "Copying files..."
-cp -r acpi_call_GUI_systemd $url
-mkdir $url/acpi_call_GUI_systemd/log
-mkdir $url/acpi_call_GUI_systemd/codes
-touch $url/acpi_call_GUI_systemd/log/install_log
-touch $url/acpi_call_GUI_systemd/log/deactivate_log
-touch $url/acpi_call_GUI_systemd/log/automates_log
-touch $url/acpi_call_GUI_systemd/codes/off
-echo "Giving files the execute permission..."
-chmod 777 $url/acpi_call_GUI_systemd/log/install_log
-chmod 777 $url/acpi_call_GUI_systemd/log/deactivate_log
-chmod 777 $url/acpi_call_GUI_systemd/log/automates_log
-chmod 777 $url/acpi_call_GUI_systemd/codes/off
-chmod +x -R $url/acpi_call_GUI_systemd
-echo "Installation complete!"
+cp /usr/local/bin/acpi_call_GUI_systemd/automates.service /usr/lib/systemd/system/
+systemctl -q enable automates.service
