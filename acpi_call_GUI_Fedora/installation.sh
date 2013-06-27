@@ -35,7 +35,7 @@
 url="/usr/local/bin/acpi_call_GUI_Fedora"
 git clone http://github.com/mkottman/acpi_call.git /usr/local/bin/acpi_call 
 cd /usr/local/bin/acpi_call 
-make >> $url/log/install_log
+make 
 insmod acpi_call.ko 
 modprobe acpi_call
 chmod 777 /proc/acpi/call 
