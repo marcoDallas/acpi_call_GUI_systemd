@@ -46,7 +46,7 @@ Make sure you have all the packages needed to recompile the kernel! For example 
 type in a terminal: 
 
 ```
-sudo java -jar /usr/local/bin/acpi_call_GUI_Fedora/acpi_call_GUI_Fedora.jar
+sudo java -jar /usr/local/bin/acpi_call_GUI_systemd/acpi_call_GUI_systemd.jar
 ```
 
 See there for a video guide: [Video tutorial acpi_call_GUI](https://www.youtube.com/watch?v=h33bvoR14x8 "Go to youtube")
