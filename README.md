@@ -1,4 +1,4 @@
-acpi_call_GUI_Fedora
+acpi_call_GUI_systemd
 =============
 This is a java program that provides a graphic interface that allows the user to:
 
@@ -9,24 +9,37 @@ This is a java program that provides a graphic interface that allows the user to
  * Automatically deactivate discrete GPU on every boot.
 
 ***
-This is the Fedora version, needs to be installed firefox.
+This version is compatible whit all linux distros that use systemd, like:
+ * Fedora since version 15
+ * Frugalware 1.5+
+ * Mageia 2+
+ * Mandriva 2011+
+ * mer since 2012
+ * openSUSE 12.1+
+ * Arch Linux since October 2012
+ * Chakra Linux since October 2012
+ * Parabola GNU/Linux since October 2012
+ * NixOS since January 2013
+ * Red Flag Linux 8+
+
+needs to be installed firefox.
 
 Ubuntu user? See there: [acpi_call_GUI](https://github.com/marcoDallas/acpi_call_GUI "acpi_call_GUI")
 ***
 
 ## To install:
-after downloading the program, enter the directory acpi_call_GUI_Fedora and launch `install.sh` . 
-if you have the program in your home directory (for example typing `git clone https://github.com/marcoDallas/acpi_call_GUI_Fedora.git`), you only need to type in terminal:
+after downloading the program, enter the directory acpi_call_GUI_systemd and launch `install.sh` . 
+if you have the program in your home directory (for example typing `git clone https://github.com/marcoDallas/acpi_call_GUI_systemd.git`), you only need to type in terminal:
 
 ```
-cd acpi_call_GUI_Fedora 
+cd acpi_call_GUI_systemd 
 
 sudo chmod +x install.sh 
 
 sudo ./install.sh 
 ```
 #### Attention
-if you have already made rc.local, make sure that it has ' exit 0 ' at his end.
+Make sure you have all the packages needed to recompile the kernel! For example gcc, linux-headers etc.
 ***
 ## To execute:
 
@@ -58,12 +71,12 @@ acpi_call module should be used with caution. I reccomend you to take a look to 
 
   Copyright (C) 2013: Marco Dalla Libera 
   
-  acpi_call_GUI is free software; you can redistribute it and/or modify
+  acpi_call_GUI_systemd is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation; either version 3 of the License, or
   (at your option) any later version.
   
-  acpi_call_GUI is distributed in the hope that it will be useful,
+  acpi_call_GUI_systemd is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
