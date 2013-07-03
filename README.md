@@ -39,7 +39,7 @@ sudo chmod +x install.sh
 sudo ./install.sh 
 ```
 #### Attention
-Make sure you have all the packages needed to recompile the kernel! For example gcc, linux-headers etc.
+Make sure you have all the packages needed to recompile the kernel! For example gcc, kernel-headers, kernel-devel etc.
 ***
 ## To execute:
 
