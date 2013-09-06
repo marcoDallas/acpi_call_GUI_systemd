@@ -1,7 +1,7 @@
 acpi_call_GUI_systemd
 =============
 #### Wanna help me and the project?
-**[There's the way to make a donation](http://marcodallas.github.io/donation.html), thank you.**
+**[Here's the way to make a donation](http://marcodallas.github.io/donation.html), thank you.**
 
 
 ***
@@ -29,7 +29,7 @@ This version is compatible whit all linux distros that use systemd, like:
 
 needs to be installed firefox.
 
-Ubuntu user? See there: [acpi_call_GUI](https://github.com/marcoDallas/acpi_call_GUI "acpi_call_GUI")
+Ubuntu user? See here: [acpi_call_GUI](https://github.com/marcoDallas/acpi_call_GUI "acpi_call_GUI")
 ***
 
 ## To install:
@@ -54,7 +54,7 @@ type in a terminal:
 sudo java -jar /usr/local/bin/acpi_call_GUI_systemd/acpi_call_GUI_systemd.jar
 ```
 
-See there for a video guide: [Video tutorial acpi_call_GUI](https://www.youtube.com/watch?v=h33bvoR14x8 "Go to youtube")
+See here for a video guide: [Video tutorial acpi_call_GUI](https://www.youtube.com/watch?v=h33bvoR14x8 "Go to youtube")
 
 (the installation commands are different because the video was made in ubuntu, but the usage of the program is the same)
 ***
