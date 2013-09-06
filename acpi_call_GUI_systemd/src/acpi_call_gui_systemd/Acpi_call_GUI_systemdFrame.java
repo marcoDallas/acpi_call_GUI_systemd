@@ -47,10 +47,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -77,6 +80,7 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
     private JRadioButton deac; //button to turn off discrete GPU 
     private JRadioButton change;//button to change the deactivation code
     private JRadioButton auto; //button for the automatization of the updates
+    private JButton donate; //button for donations
     private JButton esegui; //button execute
     private JButton esci; //button exit
     private int process;//indicates which process is running: 0->installation, 1->deactivation, 2->automatization
@@ -124,13 +128,27 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
         gruppo.add(change);
         gruppo.add(auto);
         JPanel panel=new JPanel();
-        panel.setLayout(new GridLayout(5,1));
+        panel.setLayout(new GridLayout(6,1));
         panel.add(sel);
         panel.add(deac);
         panel.add(change);
         panel.add(auto);
         panel.setBorder(new TitledBorder(new EtchedBorder(),"Operation:"));
         panel.setBackground(Color.LIGHT_GRAY);
+        donate=new JButton();
+        URL address=null;
+        try {
+            address = new URL("https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif");
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(Acpi_call_GUI_systemdFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ImageIcon ico=new ImageIcon(address);
+        donate.setIcon(ico);
+        donate.setPressedIcon(ico);
+        donate.setBorderPainted(false);
+        donate.setContentAreaFilled(false);
+        donate.setOpaque(true);
+        panel.add(donate);
         JLabel credits=new JLabel("Copyright (C) 2013 Marco Dalla Libera");
         credits.setHorizontalAlignment(JLabel.CENTER);
         panel.add(credits);
@@ -195,6 +213,33 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
 
             @Override
             public void mouseExited(MouseEvent e) {}
+        });
+        donate.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                donation();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                
+            }
         });
     }
     /**
@@ -350,5 +395,15 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
         s+="Process Complete.";
         textArea.setText(s);
         log.setTitle("Process complete.");
+    }
+    public void donation(){
+        String link="http://marcodallas.github.io/donation.html";
+        String[] cmd= {"firefox " + link } ;
+        ProcessBuilder pb=new ProcessBuilder("firefox",link);
+        try {
+            pb.start();
+        } catch (IOException ex) {
+            Logger.getLogger(Acpi_call_GUI_systemdFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
