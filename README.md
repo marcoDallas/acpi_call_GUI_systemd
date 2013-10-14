@@ -48,7 +48,7 @@ Make sure you have all the packages needed to recompile the kernel! For example 
 ***
 ## To execute:
 
-type in a terminal: 
+Search the program in yuor dash and click on the icon, or type in a terminal: 
 
 ```
 sudo java -jar /usr/local/bin/acpi_call_GUI_systemd/acpi_call_GUI_systemd.jar
