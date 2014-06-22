@@ -33,7 +33,7 @@
  # See the GNU General Public License for more details.
 
 url="/usr/local/bin/acpi_call_GUI_systemd"
-insmod /usr/local/bin/acpi_call/acpi_call.ko
+insmod /usr/local/bin/acpi_call/acpi_call.ko &> /dev/null
 B=$(sed -n '1p' $url/codes/off)
 echo "$B" > /proc/acpi/call 
 cat /proc/acpi/call
