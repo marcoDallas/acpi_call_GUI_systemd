@@ -74,7 +74,7 @@ acpi_call module should be used with caution. I reccomend you to take a look to 
 ***
 ## Copyright:
 
-  Copyright (C) 2013: Marco Dalla Libera 
+  Copyright (C) 2013,2014: Marco Dalla Libera 
   
   acpi_call_GUI_systemd is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
