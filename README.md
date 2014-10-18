@@ -34,7 +34,7 @@ Ubuntu user? See here: [acpi_call_GUI](https://github.com/marcoDallas/acpi_call_
 
 ## To install:
 after downloading the program, enter the directory acpi_call_GUI_systemd and launch `install.sh` . 
-if you have the program in your home directory (for example typing `git clone https://github.com/marcoDallas/acpi_call_GUI_systemd.git`), you only need to type in terminal:
+if you have downloaded the program in your home directory (for example typing `git clone https://github.com/marcoDallas/acpi_call_GUI_systemd.git`), you only need to type in terminal:
 
 ```
 cd acpi_call_GUI_systemd 
