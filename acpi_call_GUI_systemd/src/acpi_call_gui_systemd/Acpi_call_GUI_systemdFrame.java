@@ -1,5 +1,5 @@
 /* 
- * Acpi_call_GUI_systemdFrame.java
+ * Acpi_call_GUIsystemdFrame.java
  * 
  * Copyright (C) 2013,2014: Marco Dalla Libera 
  * 
@@ -50,6 +50,7 @@ import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
@@ -80,10 +81,10 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
     private JRadioButton deac; //button to turn off discrete GPU 
     private JRadioButton change;//button to change the deactivation code
     private JRadioButton auto; //button for the automatization of the updates
+    private JRadioButton find; //button to automatically find a deactivation code
     private JButton donate; //button for donations
     private JButton esegui; //button execute
     private JButton esci; //button exit
-    private int process;//indicates which process is running: 0->installation, 1->deactivation, 2->automatization
     private Process script;//The Process (Script) that is running
     /**
      * constructs the Frame
@@ -120,18 +121,22 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
         deac.setCursor(new Cursor(Cursor.HAND_CURSOR));
         change=new JRadioButton("Change deactivation code");
         change.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        find=new JRadioButton("Try to automatically find a deactivation code");
+        find.setCursor(new Cursor(Cursor.HAND_CURSOR));
         auto=new JRadioButton("Automate disabling discrete GPU every boot");
         auto.setCursor(new Cursor(Cursor.HAND_CURSOR));
         ButtonGroup gruppo=new ButtonGroup();
         gruppo.add(sel);
         gruppo.add(deac);
         gruppo.add(change);
+        gruppo.add(find);
         gruppo.add(auto);
         JPanel panel=new JPanel();
-        panel.setLayout(new GridLayout(6,1));
+        panel.setLayout(new GridLayout(7,1));
         panel.add(sel);
         panel.add(deac);
         panel.add(change);
+        panel.add(find);
         panel.add(auto);
         panel.setBorder(new TitledBorder(new EtchedBorder(),"Operation:"));
         panel.setBackground(Color.LIGHT_GRAY);
@@ -148,8 +153,9 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
         donate.setBorderPainted(false);
         donate.setContentAreaFilled(false);
         donate.setOpaque(true);
+        donate.setCursor(new Cursor(Cursor.HAND_CURSOR));
         panel.add(donate);
-        JLabel credits=new JLabel("Copyright (C) 2013 Marco Dalla Libera");
+        JLabel credits=new JLabel("Copyright (C) 2013,2014 Marco Dalla Libera");
         credits.setHorizontalAlignment(JLabel.CENTER);
         panel.add(credits);
         return panel;
@@ -174,7 +180,7 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
         return panel;
     }
     /**
-     * catch the user's choice in the manager panel
+     * catches the user's choice in the manager panel
      */
     private void listenerManager(){
         esci.addMouseListener(new MouseListener(){
@@ -222,24 +228,16 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
             }
 
             @Override
-            public void mousePressed(MouseEvent e) {
-                
-            }
+            public void mousePressed(MouseEvent e) {}
 
             @Override
-            public void mouseReleased(MouseEvent e) {
-                
-            }
+            public void mouseReleased(MouseEvent e) {}
 
             @Override
-            public void mouseEntered(MouseEvent e) {
-                
-            }
+            public void mouseEntered(MouseEvent e) {}
 
             @Override
-            public void mouseExited(MouseEvent e) {
-                
-            }
+            public void mouseExited(MouseEvent e) {}
         });
     }
     /**
@@ -250,12 +248,12 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
         if(deac.isSelected()){ disattiva(); }
         if(change.isSelected()){ insertCode(); }
         if(auto.isSelected()){ automatizza(); }
+        if(find.isSelected()){ findCode(); }
     }
     /**
      * installs the acpi_call module
      */
     private void installazione(){
-        process=0;
         if(!(insertCode()))return;
         ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call_GUI_systemd/installation.sh");
         pb.redirectErrorStream(true);
@@ -264,10 +262,10 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
         } catch (IOException ex) {
             Logger.getLogger(Acpi_call_GUI_systemdFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        logs();
+        logs(0);
     }
     /**
-     * turn off discrete GPU
+     * turns off discrete GPU
      */
     private void disattiva(){
         File f=new File("/usr/local/bin/acpi_call_GUI_systemd/codes/off");
@@ -280,7 +278,6 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Acpi_call_GUI_systemdFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        process=1;
         ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call_GUI_systemd/deactivate.sh");
         pb.redirectErrorStream(true);
         try {
@@ -288,13 +285,12 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
         } catch (IOException ex) {
             Logger.getLogger(Acpi_call_GUI_systemdFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        logs();
+        logs(1);
     }
     /**
      * turns off the discrete GPU on every accension
      */
     private void automatizza(){
-        process=2;
         ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call_GUI_systemd/automates.sh");
         pb.redirectErrorStream(true);
         try {
@@ -302,10 +298,52 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
         } catch (IOException ex) {
             Logger.getLogger(Acpi_call_GUI_systemdFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        logs();
+        logs(2);
     }
     /**
-     * read the deactivation code
+     * Tries to automatically find a deactivation code.
+     */
+    private void findCode(){
+        String s="It SHOULD be ok to test all of the methods,\n"
+                + "however it comes with NO WARRANTY - it may hang your computer/laptop, fail to work, etc.\n"
+                + "do you want to try anyway?";
+        int returnValue = JOptionPane.showConfirmDialog(null,s,"Read carefully",JOptionPane.OK_CANCEL_OPTION);
+        boolean found=false;
+        String code="";
+        if(returnValue==JOptionPane.YES_OPTION){
+            ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call/examples/turn_off_gpu.sh");
+            pb.redirectErrorStream(true);
+            try {
+                script=pb.start();
+                InputStream is=script.getInputStream();
+                InputStreamReader isr=new InputStreamReader(is);
+                BufferedReader buffer=new BufferedReader(isr);
+                String tmp="";
+                while((tmp=buffer.readLine())!=null && !(found)){
+                    if(tmp.contains("works!")){
+                        found=true;
+                        StringTokenizer tokenizer=new StringTokenizer(tmp);
+                        for(int i=0;i<2;i++){
+                            code=tokenizer.nextToken();
+                        }
+                        code=code.substring(0, code.length()-1);
+                        try (PrintWriter printer = new PrintWriter("/usr/local/bin/acpi_call_GUI/codes/off")) {
+                            printer.print(code);
+                        }
+                    }
+                }
+
+            } catch (IOException ex) {
+                Logger.getLogger(Acpi_call_GUI_systemdFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if(found)
+            JOptionPane.showMessageDialog(null,"code: \""+code+"\"\nhas been found and set to be used!","result",JOptionPane.INFORMATION_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(null,"no deactivation code found!","result",JOptionPane.INFORMATION_MESSAGE);
+    }
+    /**
+     * reads the deactivation code
      * @return true if the code was insert, false otherwise.
      */
     private boolean insertCode(){
@@ -314,7 +352,6 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
             s+="\n Type in the next window the code relative to your pc.";
             JOptionPane.showMessageDialog(null,s,"Go to web page?",JOptionPane.QUESTION_MESSAGE);
             String link="http://hybrid-graphics-linux.tuxfamily.org/index.php?title=ACPI_calls#Individual_Model_results";
-            String[] cmd= {"firefox " + link } ;
             ProcessBuilder pb=new ProcessBuilder("firefox",link);
             try {
                 pb.start();
@@ -337,8 +374,9 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
     /**
      * Creates a JFrame that shows the output from the scripts,
      * and finally save the output to a log file
+     * @param process identifies installation, deactivation, automatization.
      */
-    private void logs(){
+    private void logs(int process){
         manager.setVisible(false);
         JFrame log=new JFrame();
         log.setSize(FRAME_WIDTH-10,FRAME_HEIGHT-10);
@@ -359,13 +397,14 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
         BufferedReader buffer=new BufferedReader(isr);
         try {
             while((tmp=buffer.readLine())!=null){
-                if(process==1 && tmp.equals("0x0")) {
-                    s+="Discrete GPU correctly deactivated";
+                if(process==1 && tmp.contains("0x0"))
+                    s+="Discrete GPU correctly deactivated\n";
+                else{
+                    if(process==1 && tmp.contains("File exists"));
+                    else {
+                        s+=tmp+"\n";
+                    }
                 }
-                else {
-                    s+=tmp;
-                }
-                s+="\n";
                 textArea.setText(s);
             }
         } catch (IOException ex) {
@@ -396,9 +435,8 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
         textArea.setText(s);
         log.setTitle("Process complete.");
     }
-    public void donation(){
+    private void donation(){
         String link="http://marcodallas.github.io/donation.html";
-        String[] cmd= {"firefox " + link } ;
         ProcessBuilder pb=new ProcessBuilder("firefox",link);
         try {
             pb.start();
