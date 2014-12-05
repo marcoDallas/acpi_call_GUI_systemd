@@ -327,7 +327,7 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
                             code=tokenizer.nextToken();
                         }
                         code=code.substring(0, code.length()-1);
-                        try (PrintWriter printer = new PrintWriter("/usr/local/bin/acpi_call_GUI/codes/off")) {
+                        try (PrintWriter printer = new PrintWriter("/usr/local/bin/acpi_call_GUI_systemd/codes/off")) {
                             printer.print(code);
                         }
                     }
