@@ -348,8 +348,8 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
      */
     private boolean insertCode(){
         try{
-            String s="By clicking ok, it will appear a web page. \n in the `Working ACPI handle OFF` colon you will find the codes to deactivate the discrete GPU \n they are classified by PC manufacturer.";
-            s+="\n Type in the next window the code relative to your pc.";
+            String s="By clicking ok, it will appear a web page. \nin the `Working ACPI handle OFF` column you will find the codes to deactivate the discrete GPU.\nthey are classified by PC manufacturer.";
+            s+="\nType in the next window the code relative to your pc. \n\nIF YOU HAVEN'T FOUND YOUR PC:\nleave this input-box empty, click ok and then try \"Try to automatically find a deactivation code\".";
             JOptionPane.showMessageDialog(null,s,"Go to web page?",JOptionPane.QUESTION_MESSAGE);
             String link="http://hybrid-graphics-linux.tuxfamily.org/index.php?title=ACPI_calls#Individual_Model_results";
             ProcessBuilder pb=new ProcessBuilder("firefox",link);

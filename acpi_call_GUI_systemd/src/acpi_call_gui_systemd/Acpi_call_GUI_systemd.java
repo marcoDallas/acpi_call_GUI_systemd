@@ -59,7 +59,7 @@ public class Acpi_call_GUI_systemd {
         JFrame frame=new Acpi_call_GUI_systemdFrame();
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setResizable(false);
-        frame.setTitle("Acpi_call_GUI 1.4");
+        frame.setTitle("Acpi_call_GUI 1.4.1");
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
