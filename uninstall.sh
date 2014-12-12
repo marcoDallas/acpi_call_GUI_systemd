@@ -32,6 +32,8 @@
  # See the GNU General Public License for more details.
 rm -R /usr/local/bin/acpi_call
 rm -R /usr/local/bin/acpi_call_GUI_systemd
+rm /usr/share/pixmaps/acpiCallGui.png
+rm /usr/share/applications/acpi_call_GUI.desktop
 systemctl disable automates.service
 systemctl disable agg_acpi_call.service
 rm /usr/lib/systemd/system/automates.service
