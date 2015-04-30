@@ -39,5 +39,5 @@ modprobe acpi_call
 chmod 777 /proc/acpi/call 
 chmod +x $url/agg_acpi_call.sh
 uname -r > $url/kernel.txt
-cp $url/agg_acpi_call.service /usr/lib/systemd/system/
+cp $url/agg_acpi_call.service /etc/systemd/system/
 systemctl -q enable agg_acpi_call.service
