@@ -30,5 +30,5 @@
  # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
  # See the GNU General Public License for more details.
 
-cp /usr/local/bin/acpi_call_GUI_systemd/automates.service /usr/lib/systemd/system/
+cp /usr/local/bin/acpi_call_GUI_systemd/automates.service /etc/systemd/system/
 systemctl -q enable automates.service
