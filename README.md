@@ -1,6 +1,6 @@
 acpi_call_GUI_systemd
 =============
-#### Wanna help me and the project?
+#### Do you want to help me and the project?
 **[Here's the way to make a donation](http://marcodallas.github.io/donation.html), thank you.**
 
 
