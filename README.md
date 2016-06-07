@@ -11,6 +11,7 @@ This is a java program that provides a graphic interface that allows the user to
 
 ***
 This version is compatible whit all linux distros that use systemd, like:
+ * Ubuntu since version 16.04
  * Fedora since version 15
  * Frugalware 1.5+
  * Mageia 2+
