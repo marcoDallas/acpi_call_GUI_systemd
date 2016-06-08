@@ -72,6 +72,7 @@ sudo chmod +x uninstall.sh
 
 sudo ./uninstall.sh
 ```
+Finally you can delete the acpi_call_GUI_systemd folder from your home directory.
 ***
 ## Screenshots:
 #### acpi_call_GUI:
