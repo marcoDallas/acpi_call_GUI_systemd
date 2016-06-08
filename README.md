@@ -59,6 +59,20 @@ See here for a video guide: [Video tutorial acpi_call_GUI](https://www.youtube.c
 
 acpi_call module should be used with caution. I reccomend you to take a look to the readme of the acpi_call module: https://github.com/mkottman/acpi_call
 ***
+##To uninstall:
+If you deleted the acpi_call_GUI_systemd folder in your home directory re-type the following command in a terminal:
+```
+git clone https://github.com/marcoDallas/acpi_call_GUI_systemd.git
+```
+if you haven't deleted the folder - or if you just used the command above - type now the following commands:
+```
+cd acpi_call_GUI_systemd
+
+sudo chmod +x uninstall.sh
+
+sudo ./uninstall.sh
+```
+***
 ## Screenshots:
 #### acpi_call_GUI:
 ![Image](https://lh5.googleusercontent.com/gbacM0WXNlvXefAVG-pzOlEfTxtFDoeXybGld4Ky2T8=w614-h314-no "acpi_call_GUI")
