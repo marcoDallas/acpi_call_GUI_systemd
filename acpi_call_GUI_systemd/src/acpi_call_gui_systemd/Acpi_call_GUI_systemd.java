@@ -1,7 +1,7 @@
 /* 
  * Acpi_call_GUI_systemd.java
  * 
- * Copyright (C) 2013-2016: Marco Dalla Libera 
+ * Copyright (C) 2013-2017: Marco Dalla Libera 
  * 
  * acpi_call_GUI_systemd is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,13 +34,9 @@
  */
 package acpi_call_gui_systemd;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import rootutils.RootUtils;
 
 /**
  * this program allow the user to manage the acpi_call module 
@@ -52,31 +48,11 @@ public class Acpi_call_GUI_systemd {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        if(hasRootAccess()==false){
+    	RootUtils checker = new RootUtils();
+    	if(!(checker.hasRootAcces())){
             JOptionPane.showMessageDialog(null,"This program must be run as root!","Exiting program...",JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
-        JFrame frame=new Acpi_call_GUI_systemdFrame();
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setTitle("Acpi_call_GUI 1.4.1");
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
-    /**
-     * checks if the current user has root access
-     * @return true if the user has root privileges, false otherwise
-     */
-    private static boolean hasRootAccess(){
-        try {
-            Process p = Runtime.getRuntime().exec("id -u");
-            p.waitFor();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String line=reader.readLine();
-            return line.equals("0");
-        } catch (IOException | InterruptedException ex) {
-            Logger.getLogger(Acpi_call_GUI_systemd.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
+        Acpi_call_GUI_systemdFrame frame = new Acpi_call_GUI_systemdFrame();
     }
 }

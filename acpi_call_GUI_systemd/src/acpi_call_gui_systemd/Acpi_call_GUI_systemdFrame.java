@@ -1,7 +1,7 @@
 /* 
- * Acpi_call_GUIsystemdFrame.java
+ * Acpi_call_GUI_systemdFrame.java
  * 
- * Copyright (C) 2013-2016: Marco Dalla Libera 
+ * Copyright (C) 2013-2017: Marco Dalla Libera 
  * 
  * acpi_call_GUI_systemd is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,14 +47,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -68,21 +66,26 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 /**
- * this frame contains the control panel that mangages the operations
+ * this frame contains the control panel that manages the operations
  * @author Marco Dalla Libera `marcoDallas`
  */
 public class Acpi_call_GUI_systemdFrame extends JFrame{
-    private static final int FRAME_WIDTH=600;
+    
+	//Constants area
+	private static final int FRAME_WIDTH=600;
     private static final int FRAME_HEIGHT=300;
-    private JPanel intro; //label for the introducution
+    private	static final String VERSION_ID="1.4.1";
+    private static final String COPYRIGHT_YEARS="2013-2017";
+    
+    //Variables area
+    private JPanel intro; //label for the introduction
     private JPanel selection; // panel for RadioButtons
     private JPanel manager; //panel for buttons 'exit' and 'execute' 
     private JRadioButton sel; //button for the installation
-    private JRadioButton deac; //button to turn off discrete GPU 
+    private JRadioButton deac; //button to turn off discrete GPU
     private JRadioButton change;//button to change the deactivation code
     private JRadioButton auto; //button for the automatization of the updates
     private JRadioButton find; //button to automatically find a deactivation code
-    private JButton donate; //button for donations
     private JButton esegui; //button execute
     private JButton esci; //button exit
     private Process script;//The Process (Script) that is running
@@ -91,12 +94,16 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
      */
     public Acpi_call_GUI_systemdFrame(){
         setSize(FRAME_WIDTH,FRAME_HEIGHT);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setTitle("Acpi_call_GUI "+VERSION_ID);
+        setLocationRelativeTo(null);
         intro=createIntro();
         add(intro,BorderLayout.NORTH);
         selection=createRadioButtons();
         add(selection,BorderLayout.CENTER);
         manager=createButtons();
         add(manager,BorderLayout.SOUTH);
+        setVisible(rootPaneCheckingEnabled);
     }
     /**
      * Creates the intro panel
@@ -140,22 +147,7 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
         panel.add(auto);
         panel.setBorder(new TitledBorder(new EtchedBorder(),"Operation:"));
         panel.setBackground(Color.LIGHT_GRAY);
-        donate=new JButton();
-        URL address=null;
-        try {
-            address = new URL("https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif");
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(Acpi_call_GUI_systemdFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ImageIcon ico=new ImageIcon(address);
-        donate.setIcon(ico);
-        donate.setPressedIcon(ico);
-        donate.setBorderPainted(false);
-        donate.setContentAreaFilled(false);
-        donate.setOpaque(true);
-        donate.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        panel.add(donate);
-        JLabel credits=new JLabel("Copyright (C) 2013,2014 Marco Dalla Libera");
+        JLabel credits=new JLabel("Copyright (C) "+COPYRIGHT_YEARS+" Marco Dalla Libera");
         credits.setHorizontalAlignment(JLabel.CENTER);
         panel.add(credits);
         return panel;
@@ -206,25 +198,6 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
             @Override
             public void mouseClicked(MouseEvent e) {
                 chooseAction();
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {}
-
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-
-            @Override
-            public void mouseEntered(MouseEvent e) {}
-
-            @Override
-            public void mouseExited(MouseEvent e) {}
-        });
-        donate.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                donation();
             }
 
             @Override
@@ -434,14 +407,5 @@ public class Acpi_call_GUI_systemdFrame extends JFrame{
         s+="Process Complete.";
         textArea.setText(s);
         log.setTitle("Process complete.");
-    }
-    private void donation(){
-        String link="http://marcodallas.github.io/donation.html";
-        ProcessBuilder pb=new ProcessBuilder("firefox",link);
-        try {
-            pb.start();
-        } catch (IOException ex) {
-            Logger.getLogger(Acpi_call_GUI_systemdFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 }
