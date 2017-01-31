@@ -82,7 +82,7 @@ Finally you can delete the acpi_call_GUI_systemd folder from your home directory
 ***
 ## Screenshots:
 #### acpi_call_GUI:
-![Image](https://lh5.googleusercontent.com/gbacM0WXNlvXefAVG-pzOlEfTxtFDoeXybGld4Ky2T8=w614-h314-no "acpi_call_GUI")
+![Image](https://lh3.googleusercontent.com/5Pyo03ty4cfRaggaf36HWJO8uujS8stTGPmNdCTguvciTBVRt6BukHFsaKnNTsGRuhdcIvPpz2SJoB83WohdD7fW7xELv2ZgWzU3ovohDGbHCv0wmq_fE2HaHMdFcfLNmiARH27rzKGfQZ6nJbN4E3YN1STpeO6JHZuSs6cmwFZzFJGBklTHm8_TcuJS953GW5MGOO2jRSEN56eNl1qzqi4-sXglOIUv8ixX4uXwrKgRTQVNhOggtq31Bu13CiPYycarDffsD4asvClf-SvX2UaOnRKuffrrBu0XpCj5kJpThisEDfVZntmQgKIH2QtoJbEaW7_3JNZEZIxCnWggFI1CNVuA31sZwTzei2ru5vG75dY2g1rr2uzYTn9fDB7RnVlVSUjVIRaoaXrQxzM1rIWa9V-3gRZYeI89gUOD2zNjbUllVil7Hr2uqGxefjsmk8bU-kkrOW7ezcYcIKAmfRqe1gNJpN_4kP47pkwoxtfT18IG5JVUH6sApGp1HSIKfS6GEANGsMNAy0dgwg9CvYuQu34hurQCY0AwyflGUZCDcOepEpUuvokVMDbz8xq4ZK_CdG1iJCnSI-Z_WXEPdQJrpNOThEiY0PjBmH2AtyoT9qESDinQ=w630-h330-no "acpi_call_GUI")
 ***
 #### Since version 1.4 you can try to automatically find a deactivation code!
 ![Image](https://lh6.googleusercontent.com/-xudmJqs6jKA/VIGiHnrHR_I/AAAAAAAAJfA/PVUCJYQcuVE/w644-h347-no/Schermata.png "Since version 1.4 you can try to automatically find a deactivation code!")
