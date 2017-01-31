@@ -5,7 +5,7 @@ This is a java program that provides a graphic interface that allows the user to
 
  * Install the acpi_call kernel module (kernel would be recompiled automatically after each update);
  
- * Deactivate discrete GPU;
+ * Deactivate discrete GPU after unloading its driver;
  
  * Automatically deactivate discrete GPU on every boot.
 
@@ -24,7 +24,8 @@ This version is compatible whit all linux distros that use systemd, like:
  * NixOS since January 2013
  * Red Flag Linux 8+
 
-needs to be installed firefox.
+needs to be installed Firefox: it will try to open the default web browser but if it fails
+it will fall back and launch Firefox.
 
 Ubuntu user? See here: [acpi_call_GUI](https://github.com/marcoDallas/acpi_call_GUI "acpi_call_GUI")
 ***
@@ -40,22 +41,27 @@ sudo chmod +x install.sh
 
 sudo ./install.sh 
 ```
-#### Attention
-Make sure you have all the packages needed to recompile the kernel! For example gcc, kernel-headers, kernel-devel etc.
+#### Attention - prerequisites:
+Make sure you have all the packages needed to recompile the kernel! For example gcc, kernel-headers etc.
+Also please note that 'pkexec' is used to grant super-user access, so make sure that it is installed 
+in your system.
 ***
 ## To execute:
 
 Search the program in yuor dash and click on the icon, or type in a terminal: 
 
 ```
-sudo java -jar /usr/local/bin/acpi_call_GUI_systemd/acpi_call_GUI_systemd.jar
+java -jar /usr/local/bin/acpi_call_GUI_systemd/acpi_call_GUI_systemd.jar
 ```
+It will ask for the administrator password when necessary, it may also ask for it multiple times.
+Also since version 2.0 a reboot is required after installation to properly unload the discrete GPU driver.
 
-See here for a video guide: [Video tutorial acpi_call_GUI](https://www.youtube.com/watch?v=h33bvoR14x8 "Go to youtube")
+See here for a (legacy) video guide: [Video tutorial acpi_call_GUI](https://www.youtube.com/watch?v=h33bvoR14x8 "Go to youtube")
 
 (the installation commands are different because the video was made in ubuntu, but the usage of the program is the same)
 ***
 ## Note:
+Since version 2.0 this program uses my own fork of acpi_call, which have kernel 3.17+ compatibilty and other small fixes.
 
 acpi_call module should be used with caution. I reccomend you to take a look to the readme of the acpi_call module: https://github.com/mkottman/acpi_call
 ***
@@ -108,14 +114,4 @@ Finally you can delete the acpi_call_GUI_systemd folder from your home directory
   
   and:
   
-  Copyright (c) 2010: Michal Kottman
-  
-  acpi_call is free software: you can redistribute it and/or modify 
-  it under the terms of the GNU General Public License as published by 
-  the Free Software Foundation, either version 3 of the License, or 
-  (at your option) any later version.
- 
-  acpi_call is distributed in the hope that it will be useful, 
-  but WITHOUT ANY WARRANTY; without even the implied warranty of 
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
-  See the GNU General Public License for more details.
+  Copyright (c) 2010: Michal Kottman for acpi_call module, which is used by this program.
