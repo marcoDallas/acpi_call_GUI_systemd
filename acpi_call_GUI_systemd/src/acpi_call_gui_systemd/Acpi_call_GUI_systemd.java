@@ -17,20 +17,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
- * 
- * and:
- * 
- * Copyright (c) 2010: Michal Kottman
- * 
- * acpi_call is free software: you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published by 
- * the Free Software Foundation, either version 3 of the License, or 
- * (at your option) any later version.
- * 
- * acpi_call is distributed in the hope that it will be useful, 
- * but WITHOUT ANY WARRANTY; without even the implied warranty of 
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
- * See the GNU General Public License for more details.
  */
 package acpi_call_gui_systemd;
 
@@ -48,11 +34,13 @@ public class Acpi_call_GUI_systemd {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+    	//RootUtils is a class made by me and it's closed source.
     	RootUtils checker = new RootUtils();
-    	if(!(checker.hasRootAcces())){
-            JOptionPane.showMessageDialog(null,"This program must be run as root!","Exiting program...",JOptionPane.ERROR_MESSAGE);
+    	if(checker.hasRootAcces()){
+            JOptionPane.showMessageDialog(null,"This program no longer needs to be run as root,\nplease run it as normal user: it will ask for password when necessary","Exiting program...",JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
-        Acpi_call_GUI_systemdFrame frame = new Acpi_call_GUI_systemdFrame();
+        @SuppressWarnings("unused")
+		ACGSFrame frame = new ACGSFrame();
     }
 }
