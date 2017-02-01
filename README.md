@@ -37,13 +37,13 @@ if you have downloaded the program in your home directory (for example typing `g
 ```
 cd acpi_call_GUI_systemd 
 
-sudo chmod +x install.sh 
+chmod +x install.sh 
 
-sudo ./install.sh 
+./install.sh 
 ```
 #### Attention - prerequisites:
 Make sure you have all the packages needed to recompile the kernel! For example gcc, kernel-headers etc.
-Also please note that 'pkexec' is used to grant super-user access, so make sure that it is installed 
+Also please note that 'pkexec' is used to grant super-user access, so make sure that `polkit` is installed 
 in your system.
 ***
 ## To execute:
