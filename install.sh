@@ -17,27 +17,35 @@
  # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  # MA 02110-1301, USA.
 
-url="/usr/local/bin"
-echo "Copying files..."
-cp -r acpi_call_GUI_systemd $url
-url="/usr/local/bin/acpi_call_GUI_systemd"
-cp acpiCallGui.png /usr/share/pixmaps
-cp acpi_call_GUI.desktop /usr/share/applications/
-mkdir $url/log
-mkdir $url/codes
-touch $url/log/install_log
-touch $url/log/deactivate_log
-touch $url/log/automates_log
-touch $url/codes/off
-echo "Giving files the right permissions..."
-chmod +x /usr/share/applications/acpi_call_GUI.desktop
-chmod 644 $url/log/install_log
-chmod 644 $url/log/deactivate_log
-chmod 644 $url/log/automates_log
-chmod 644 $url/codes/off
-chmod 555 $url/acpi_call_GUI_systemd.jar
-chmod 555 $url/agg_acpi_call.sh
-chmod 555 $url/automates.sh
-chmod 555 $url/deactivate.sh
-chmod 555 $url/installation.sh
-echo "Installation complete!"
+if [ $(id -u) != "0" ] 
+then
+    url="/usr/local/bin"
+    echo "Copying files..."
+    sudo cp -r acpi_call_GUI_systemd $url
+    url="/usr/local/bin/acpi_call_GUI_systemd"
+    sudo chown -R $USER $url
+    sudo cp acpiCallGui.png /usr/share/pixmaps
+    sudo cp acpi_call_GUI.desktop /usr/share/applications/
+    sudo mkdir /usr/local/bin/acpi_call
+    sudo chown $USER /usr/local/bin/acpi_call
+    mkdir $url/log
+    mkdir $url/codes
+    touch $url/log/install_log
+    touch $url/log/deactivate_log
+    touch $url/log/automates_log
+    touch $url/codes/off
+    echo "Giving files the right permissions..."
+    sudo chmod +x /usr/share/applications/acpi_call_GUI.desktop
+    chmod 644 $url/log/install_log
+    chmod 644 $url/log/deactivate_log
+    chmod 644 $url/log/automates_log
+    chmod 644 $url/codes/off
+    chmod 555 $url/acpi_call_GUI_systemd.jar
+    chmod 555 $url/agg_acpi_call.sh
+    chmod 555 $url/automates.sh
+    chmod 555 $url/deactivate.sh
+    chmod 555 $url/installation.sh
+    echo "Installation complete!"
+else
+    echo "Please don't run this script with sudo, it will ask for password when necessary: use './install.sh'"
+fi
