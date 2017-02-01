@@ -23,8 +23,8 @@ rm /usr/share/pixmaps/acpiCallGui.png
 rm /usr/share/applications/acpi_call_GUI.desktop
 systemctl disable automates.service
 systemctl disable agg_acpi_call.service
-rm /usr/lib/systemd/system/automates.service
-rm /usr/lib/systemd/system/agg_acpi_call.service
+rm /etc/systemd/system/automates.service
+rm /etc/systemd/system/agg_acpi_call.service
 
 #enabling GPU drivers again
 echo "enabling GPU drivers..."
