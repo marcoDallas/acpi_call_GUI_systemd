@@ -66,12 +66,9 @@ class ACGSCore {
      * turns off discrete GPU
      */
     void disattiva(){
-        if(!(checkModule("acpi_call"))){ 
-        	JOptionPane.showMessageDialog(null,"Use the installation option first!","error",JOptionPane.WARNING_MESSAGE);
+    	if(checkModule("radeon") || checkModule("amdgpu") || checkModule("nouveau")){
+        	JOptionPane.showMessageDialog(null,"Please use installation option and reboot before using this option","error",JOptionPane.WARNING_MESSAGE);
         	return;
-        }
-        if(checkModule("radeon") || checkModule("amdgpu") || checkModule("nouveau")){
-        	JOptionPane.showMessageDialog(null,"Please reboot before using this option","error",JOptionPane.WARNING_MESSAGE);
         }
         ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call_GUI_systemd/deactivate.sh");
         pb.redirectErrorStream(true);
@@ -119,7 +116,7 @@ class ACGSCore {
         int returnValue = JOptionPane.showConfirmDialog(null,s,"Read carefully",JOptionPane.OK_CANCEL_OPTION);
         String code="";
         if(returnValue==JOptionPane.YES_OPTION){
-            ProcessBuilder pb=new ProcessBuilder("/bin/sh","/usr/local/bin/acpi_call/examples/turn_off_gpu.sh");
+            ProcessBuilder pb=new ProcessBuilder("pkexec","/usr/local/bin/acpi_call/examples/turn_off_gpu.sh");
             pb.redirectErrorStream(true);
             try {
                 Process process=pb.start();
@@ -129,7 +126,6 @@ class ACGSCore {
                 String tmp="";
                 while((tmp=buffer.readLine())!=null){
                     if(tmp.contains("works!")){
-                    	process.destroyForcibly();
                         StringTokenizer tokenizer=new StringTokenizer(tmp);
                         for(int i=0;i<2;i++){
                             code=tokenizer.nextToken(); //removes 'Trying' from the output line
@@ -138,15 +134,27 @@ class ACGSCore {
                         try (PrintWriter printer = new PrintWriter("/usr/local/bin/acpi_call_GUI_systemd/codes/off")) {
                             printer.print(code);
                             printer.close();
-                            JOptionPane.showMessageDialog(null,"code: \""+code+"\"\nhas been found and set to be used!\nnow acpi_call module will be installed","result",JOptionPane.INFORMATION_MESSAGE);
-                            installazione();
+                            JOptionPane.showMessageDialog(null,"code: \""+code+"\"\nhas been found and set to be used!","result",JOptionPane.INFORMATION_MESSAGE);
+                            buffer.close();
+                            isr.close();
+                            is.close();
+                            process.destroy();
+                            return;
                         } catch (IOException e){
                         	e.printStackTrace();
                         	JOptionPane.showMessageDialog(null,"a code was found but an error occured\nwhile writing it to file", "error", JOptionPane.ERROR_MESSAGE);
-                            return;                        	
+                        	buffer.close();
+                            isr.close();
+                            is.close();
+                            process.destroy();
+                        	return;                        	
                         }
                     }
                 }
+                buffer.close();
+                isr.close();
+                is.close();
+                process.destroy();
 
             } catch (IOException ex) {
                 Logger.getLogger(ACGSFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -164,7 +172,7 @@ class ACGSCore {
         String s="By clicking ok, it will appear a web page. \nin the `Working ACPI handle OFF` column you will find the codes to deactivate the discrete GPU.\nthey are classified by PC manufacturer.";
         s+="\nType in the next window the code relative to your pc. \n\nIF YOU HAVEN'T FOUND YOUR PC:\nleave this input-box empty, click ok and then try \"Try to automatically find a deactivation code\".";
         JOptionPane.showMessageDialog(null,s,"Go to web page?",JOptionPane.QUESTION_MESSAGE);
-        String link="http://hybrid-graphics-linux.tuxfamily.org/index.php?title=ACPI_calls#Individual_Model_results";
+        String link="http://hybrid-graphics-linux.tuxfamily.org/index.php?title=ACPI_calls";
         ProcessBuilder pb=new ProcessBuilder("firefox",link);
         try {
             pb.start();
@@ -190,11 +198,11 @@ class ACGSCore {
     }
     /**
      * Uses lsmod to check if the given module is present
-     * @param String module : the module to search
+     * @param  module : the module to search
      * @return true if the installation completed successfully, false otherwise
      */
     private boolean checkModule(String module){
-    	ProcessBuilder pb = new ProcessBuilder("/bin/sh","lsmod");
+    	ProcessBuilder pb = new ProcessBuilder("lsmod");
     	pb.redirectErrorStream(true);
     	try {
 			Process process = pb.start();
@@ -203,11 +211,18 @@ class ACGSCore {
             BufferedReader buffer=new BufferedReader(isr);
             String tmp="";
             while((tmp=buffer.readLine())!=null){
-                if(tmp.contains("module")){
-                	process.destroyForcibly();
+                if(tmp.contains(module)){
+                	buffer.close();
+                	isr.close();
+                	is.close();
+                	process.destroy();
                 	return true;
                 }
             }
+            buffer.close();
+            isr.close();
+            is.close();
+            process.destroy();
 		} catch (IOException e) {
 			Logger.getLogger(ACGSFrame.class.getName()).log(Level.SEVERE, null, e);
 			JOptionPane.showMessageDialog(null,"An error occured while launchig script,\nplease try again", "error", JOptionPane.ERROR_MESSAGE);
@@ -239,6 +254,10 @@ class ACGSCore {
                 }
                 frame.setText(s);
             }
+            buffer.close();
+            isr.close();
+            is.close();
+            script.destroy();
         } catch (IOException ex) {
             Logger.getLogger(ACGSFrame.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null,"An error occured while reading the output, log incomplete", "error", JOptionPane.ERROR_MESSAGE);

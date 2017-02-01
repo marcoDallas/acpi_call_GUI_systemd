@@ -52,7 +52,7 @@ class ACGSFrame extends JFrame implements ActionListener{
 	//Constants area
 	private static final int FRAME_WIDTH=600;
     private static final int FRAME_HEIGHT=300;
-    static final String VERSION_ID="2.0";
+    static final String VERSION_ID="2.0.1";
     static final String COPYRIGHT_YEARS="2013-2017";
     private static final String DOCUMENTATION="https://github.com/marcoDallas/acpi_call_GUI_systemd/blob/master/README.md";
     private static final String ISSUE_TRACKER="https://github.com/marcoDallas/acpi_call_GUI_systemd/issues";

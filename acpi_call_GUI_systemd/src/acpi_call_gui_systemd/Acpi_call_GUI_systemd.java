@@ -40,6 +40,10 @@ public class Acpi_call_GUI_systemd {
             JOptionPane.showMessageDialog(null,"This program no longer needs to be run as root,\nplease run it as normal user: it will ask for password when necessary","Exiting program...",JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
+    	if(!(checker.isAgentPresent("pkexec"))){
+    		JOptionPane.showMessageDialog(null,"Please install polkit, it's a prerequisite","Exiting program...",JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+    	}
         @SuppressWarnings("unused")
 		ACGSFrame frame = new ACGSFrame();
     }
