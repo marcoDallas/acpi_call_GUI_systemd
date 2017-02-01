@@ -16,5 +16,5 @@
  # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  # MA 02110-1301, USA.
 
-pkexec cp /usr/local/bin/acpi_call_GUI_systemd/automates.service /etc/systemd/system/ #root
-pkexec systemctl -q enable automates.service #root
+pkexec sh -c "cp /usr/local/bin/acpi_call_GUI_systemd/automates.service /etc/systemd/system/ ; systemctl -q enable automates.service"
+#pkexec systemctl -q enable automates.service #root

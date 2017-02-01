@@ -20,10 +20,10 @@ url="/usr/local/bin/acpi_call_GUI_systemd"
 git clone https://github.com/marcoDallas/acpi_call.git /usr/local/bin/acpi_call 
 cd /usr/local/bin/acpi_call 
 make
-pkexec insmod acpi_call.ko #root
+pkexec sh -c "insmod /usr/local/bin/acpi_call/acpi_call.ko ; chmod 644 /proc/acpi/call ; cp $url/agg_acpi_call.service /etc/systemd/system/ ; systemctl -q enable agg_acpi_call.service ; echo 'disabling GPU drivers, please note that if necessary uninstall.sh will also re-enable them' ; cp $url/noGPUDriver.conf /etc/modprobe.d/"
 #modprobe acpi_call
-pkexec chmod 644 /proc/acpi/call #root
+#pkexec chmod 644 /proc/acpi/call #root
 chmod +x $url/agg_acpi_call.sh
 uname -r > $url/kernel.txt
-pkexec cp $url/agg_acpi_call.service /etc/systemd/system/ #root
-pkexec systemctl -q enable agg_acpi_call.service #root
+#pkexec cp $url/agg_acpi_call.service /etc/systemd/system/ #root
+#pkexec systemctl -q enable agg_acpi_call.service #root
