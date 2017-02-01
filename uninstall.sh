@@ -16,17 +16,21 @@
  # along with this program; if not, write to the Free Software
  # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  # MA 02110-1301, USA.
- 
-rm -R /usr/local/bin/acpi_call
-rm -R /usr/local/bin/acpi_call_GUI_systemd
-rm /usr/share/pixmaps/acpiCallGui.png
-rm /usr/share/applications/acpi_call_GUI.desktop
-systemctl disable automates.service
-systemctl disable agg_acpi_call.service
-rm /etc/systemd/system/automates.service
-rm /etc/systemd/system/agg_acpi_call.service
+if [ $(id -u) = "0" ] 
+then
+    rm -R /usr/local/bin/acpi_call
+    rm -R /usr/local/bin/acpi_call_GUI_systemd
+    rm /usr/share/pixmaps/acpiCallGui.png
+    rm /usr/share/applications/acpi_call_GUI.desktop
+    systemctl disable automates.service
+    systemctl disable agg_acpi_call.service
+    rm /etc/systemd/system/automates.service
+    rm /etc/systemd/system/agg_acpi_call.service
 
-#enabling GPU drivers again
-echo "enabling GPU drivers..."
-rm /etc/modprobe.d/noGPUDriver.conf
-echo "uninstall complete!"
+    #enabling GPU drivers again
+    echo "enabling GPU drivers..."
+    rm /etc/modprobe.d/noGPUDriver.conf
+    echo "uninstall complete!"
+else
+    echo "Please use sudo: 'sudo ./uninstall.sh'"
+fi    
