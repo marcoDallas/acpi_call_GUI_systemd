@@ -5,7 +5,7 @@ This is a java program that provides a graphic interface that allows the user to
 
  * Install the acpi_call kernel module (kernel would be recompiled automatically after each update);
  
- * Deactivate discrete GPU after unloading its driver;
+ * Deactivate discrete GPU after unloading its driver (supports radeon, amdgpu and nouveau);
  
  * Automatically deactivate discrete GPU on every boot.
 
@@ -32,19 +32,28 @@ Ubuntu user? See here: [acpi_call_GUI](https://github.com/marcoDallas/acpi_call_
 
 ## To install:
 after downloading the program, enter the directory acpi_call_GUI_systemd and launch `install.sh` . 
-if you have downloaded the program in your home directory (for example typing `git clone https://github.com/marcoDallas/acpi_call_GUI_systemd.git`), you only need to type in a terminal:
+if you have downloaded the program in your home directory, for example by typing:
 
 ```
-cd acpi_call_GUI_systemd 
+git clone https://github.com/marcoDallas/acpi_call_GUI_systemd ~/
+```
+then you only need to type in a terminal:
+
+```
+cd ~/acpi_call_GUI_systemd 
 
 chmod +x install.sh 
 
 ./install.sh 
 ```
 #### Attention - prerequisites:
-Make sure you have all the packages needed to recompile the kernel! For example gcc, kernel-headers etc.
-Also please note that 'pkexec' is used to grant super-user access, so make sure that `polkit` is installed 
+Make sure you have all the packages needed to recompile the kernel! For example `gcc`, `kernel-headers`, `make` etc.
+(`build-essential` and `kernel-headers` should be enough if you're using Ubuntu)
+
+Please note that 'pkexec' is used to grant super-user access, so make sure that `polkit` is installed 
 in your system.
+
+Also Java needs to be installed, at least version 8: `openjdk-8-jre` or Oracle Java 8.
 ***
 ## To execute:
 
@@ -68,11 +77,11 @@ acpi_call module should be used with caution. I reccomend you to take a look to 
 ##To uninstall:
 If you deleted the acpi_call_GUI_systemd folder in your home directory re-type the following command in a terminal:
 ```
-git clone https://github.com/marcoDallas/acpi_call_GUI_systemd.git
+git clone https://github.com/marcoDallas/acpi_call_GUI_systemd.git ~/
 ```
 if you haven't deleted the folder - or if you just used the command above - type now the following commands:
 ```
-cd acpi_call_GUI_systemd
+cd ~/acpi_call_GUI_systemd
 
 chmod +x uninstall.sh
 
@@ -95,7 +104,7 @@ Finally you can delete the acpi_call_GUI_systemd folder from your home directory
 ***
 ## Copyright:
 
-  Copyright (C) 2013-2016: Marco Dalla Libera 
+  Copyright (C) 2013-2017: Marco Dalla Libera 
   
   acpi_call_GUI_systemd is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
