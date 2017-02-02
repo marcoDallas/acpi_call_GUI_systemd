@@ -35,7 +35,7 @@ after downloading the program, enter the directory acpi_call_GUI_systemd and lau
 if you have downloaded the program in your home directory, for example by typing:
 
 ```
-git clone https://github.com/marcoDallas/acpi_call_GUI_systemd ~/
+git clone https://github.com/marcoDallas/acpi_call_GUI_systemd.git ~/
 ```
 then you only need to type in a terminal:
 
