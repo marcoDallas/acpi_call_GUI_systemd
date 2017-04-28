@@ -74,7 +74,7 @@ Since version 2.0 this program uses my own fork of acpi_call, which have kernel 
 
 acpi_call module should be used with caution. I reccomend you to take a look to the readme of the acpi_call module: https://github.com/mkottman/acpi_call
 ***
-##To uninstall:
+## To uninstall:
 If you deleted the acpi_call_GUI_systemd folder in your home directory re-type the following command in a terminal:
 ```
 git clone https://github.com/marcoDallas/acpi_call_GUI_systemd.git ~/
