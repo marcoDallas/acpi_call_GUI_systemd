@@ -1,6 +1,8 @@
 acpi_call_GUI_systemd
 =====
 ***
+This repository is now archived. As of 2024 this software should no longer be needed, so I have decided not to maintain it anymore.
+***
 This is a java program that provides a graphic interface that allows the user to:
 
  * Install the acpi_call kernel module (kernel would be recompiled automatically after each update);
